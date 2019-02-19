@@ -1,0 +1,14 @@
+\\mac\home\Documents\Visual Studio 2017\Projects\EgeriaCapital\EgeriaCapital
+--output-path=obj\Debug\netcoreapp2.0\
+--application-name=EgeriaCapital
+--content-root=\\mac\home\Documents\Visual Studio 2017\Projects\EgeriaCapital\EgeriaCapital
+--file=\\mac\home\Documents\Visual Studio 2017\Projects\EgeriaCapital\EgeriaCapital\Views\Home\About.cshtml
+--file=\\mac\home\Documents\Visual Studio 2017\Projects\EgeriaCapital\EgeriaCapital\Views\Home\Contact.cshtml
+--file=\\mac\home\Documents\Visual Studio 2017\Projects\EgeriaCapital\EgeriaCapital\Views\Home\Index - old.cshtml
+--file=\\mac\home\Documents\Visual Studio 2017\Projects\EgeriaCapital\EgeriaCapital\Views\Home\Index.cshtml
+--file=\\mac\home\Documents\Visual Studio 2017\Projects\EgeriaCapital\EgeriaCapital\Views\Home\TradeRecommendations.cshtml
+--file=\\mac\home\Documents\Visual Studio 2017\Projects\EgeriaCapital\EgeriaCapital\Views\Shared\Error.cshtml
+--file=\\mac\home\Documents\Visual Studio 2017\Projects\EgeriaCapital\EgeriaCapital\Views\Shared\_Layout.cshtml
+--file=\\mac\home\Documents\Visual Studio 2017\Projects\EgeriaCapital\EgeriaCapital\Views\Shared\_ValidationScriptsPartial.cshtml
+--file=\\mac\home\Documents\Visual Studio 2017\Projects\EgeriaCapital\EgeriaCapital\Views\_ViewImports.cshtml
+--file=\\mac\home\Documents\Visual Studio 2017\Projects\EgeriaCapital\EgeriaCapital\Views\_ViewStart.cshtml

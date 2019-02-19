@@ -1,0 +1,81 @@
+﻿-- Tables 
+USE TradingPlatform;
+
+/*
+	Stock
+*/
+IF NOT EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = N'Stock')
+CREATE TABLE Stock(
+	StockID INT PRIMARY KEY IDENTITY(1,1)
+	,Symbol VARCHAR(10)
+	,Name VARCHAR(50)
+	,DateInserted DATETIME
+	-- ,IsActive BIT
+)
+
+/* 
+	Trading Session
+*/
+IF NOT EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = N'TradingSession')
+CREATE TABLE TradingSession(
+	TradingSessionID INT PRIMARY KEY IDENTITY(1,1)
+	,StockID INT FOREIGN KEY REFERENCES Stock(StockID)
+	,TradingDate DATETIME
+	,OpenPrice MONEY
+	,ClosePrice MONEY
+	,HighPrice MONEY
+	,LowPrice Money
+	,Volume INT
+)
+
+/*
+	UserAccount
+*/
+IF NOT EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = N'UserAccount')
+CREATE TABLE UserAccount(
+	UserID INT PRIMARY KEY IDENTITY(1,1)
+	,UserGUID UNIQUEIDENTIFIER
+	,UserName VARCHAR(50)
+	,UserPassword VARCHAR(50)
+)
+
+/*
+	Portfolio
+*/
+IF NOT EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = N'Portfolio')
+CREATE TABLE Portfolio(
+	PortfolioID INT PRIMARY KEY IDENTITY(1,1)
+	,PortfolioGUID UNIQUEIDENTIFIER
+	,PortfolioName VARCHAR(255)
+	,Symbols VARCHAR(255)
+	,UserID INT FOREIGN KEY REFERENCES UserAccount(UserID)
+)
+
+/*
+	PortfolioConfig
+*/
+IF NOT EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = N'PortfolioConfig')
+CREATE TABLE PortfolioConfig(
+	PortfolioConfigID INT PRIMARY KEY IDENTITY(1,1)
+	,PortfolioID INT FOREIGN KEY REFERENCES Portfolio(PortfolioID)
+	,StockID  INT FOREIGN KEY REFERENCES Stock(StockID)
+	,IsActive BIT
+)
+
+
+/*
+	Trade
+*/
+IF NOT EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = N'Trade')
+CREATE TABLE Trade(
+	TradeID INT PRIMARY KEY IDENTITY(1,1)
+	,StockID  INT FOREIGN KEY REFERENCES Stock(StockID)
+	,TradingDate DATETIME
+	,TradePrice MONEY
+	,NumberOfShares INT
+)
+
+
+drop table PortfolioConfig
+drop table Portfolio
+drop table UserAccount

@@ -1,0 +1,106 @@
+﻿@model EgeriaCapital.Models.TradeRecommendationView
+
+@{
+    ViewData["Title"] = "TradeRecommendations";
+}
+
+<h2>TradeRecommendations</h2>
+
+
+
+<table class="table">
+    <tr>
+        <td>
+            <b> Algorithm </b>
+        </td>
+        <td>
+           Bollinger Bands
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <b> Standard Deviation </b>
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.BollingerBandSetting.UpperStdDevLimit)
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <b> Period </b>
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.BollingerBandSetting.Period)
+        </td>
+    </tr>
+</table>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Recommendations.First().Symbol)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Recommendations.First().TradeAction)
+            </th>
+            <th>
+                Current Price
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Recommendations.First().SellRating)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Recommendations.First().PurchaseRecommendation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Recommendations.First().SellRecommendation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Recommendations.First().PercentReturnPotential)
+            </th>
+            <th>
+               Date
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Recommendations)
+        {
+        <tr>
+            <td>
+                <a href="https://finance.yahoo.com/quote/@Html.DisplayFor(modelItem => item.Symbol)" target="_blank"> @Html.DisplayFor(modelItem => item.Symbol)</a>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TradeAction)
+            </td>
+            <td>
+                $@Html.DisplayFor(modelItem => item.MostRecentTradingSession.Close)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SellRating)
+            </td>
+            <td>
+                $@Html.DisplayFor(modelItem => item.PurchaseRecommendation)
+            </td>
+            <td>
+                $@Html.DisplayFor(modelItem => item.SellRecommendation)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PercentReturnPotential)%
+            </td>
+            <td>
+                @item.MostRecentTradingSession.DateTime.ToString("MM/dd/yyyy")
+               
+            </td>
+            <!--<td>
+        @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+        @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+        @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+    </!--td> -->
+        </tr>
+        }
+    </tbody>
+</table>
