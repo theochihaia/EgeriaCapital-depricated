@@ -9,5 +9,6 @@ namespace EgeriaCapital.Models
     public class TradeAlgorithmConfiguration
     {
         public string Config { get; set; }
+
     }
 }

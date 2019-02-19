@@ -13258,11 +13258,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "\\\\mac\\home\\Documents\\Visual Studio 2017\\Projects\\EgeriaCapital\\EgeriaCapital\\EgeriaCapital.csproj",
+      "projectUniqueName": "C:\\Users\\theo\\Source\\Repos\\EgeriaCapital\\EgeriaCapital\\EgeriaCapital.csproj",
       "projectName": "EgeriaCapital",
-      "projectPath": "\\\\mac\\home\\Documents\\Visual Studio 2017\\Projects\\EgeriaCapital\\EgeriaCapital\\EgeriaCapital.csproj",
+      "projectPath": "C:\\Users\\theo\\Source\\Repos\\EgeriaCapital\\EgeriaCapital\\EgeriaCapital.csproj",
       "packagesPath": "C:\\Users\\theo\\.nuget\\packages\\",
-      "outputPath": "\\\\mac\\home\\Documents\\Visual Studio 2017\\Projects\\EgeriaCapital\\EgeriaCapital\\obj\\",
+      "outputPath": "C:\\Users\\theo\\Source\\Repos\\EgeriaCapital\\EgeriaCapital\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\",
