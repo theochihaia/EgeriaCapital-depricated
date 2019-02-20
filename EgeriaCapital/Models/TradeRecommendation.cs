@@ -30,13 +30,10 @@ namespace EgeriaCapital.Models
             get
             {
                 decimal closePrice = this.MostRecentTradingSession.Close;
-                decimal score = (this.SellRecommendation - this.MostRecentTradingSession.Close) / this.PurchaseRecommendation;
+                decimal score = (this.MostRecentTradingSession.Close - this.SellRecommendation)/ this.MostRecentTradingSession.Close;
 
-                // normalize score
-                score = Math.Min(score, 1);
-                score = Math.Max(score, 0);
 
-                return Math.Round( 1 - score , 4);
+                return score;
             }
         }
 

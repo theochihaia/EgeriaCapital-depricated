@@ -20,10 +20,11 @@ namespace EgeriaCapital.Manager
 
         // TODO: Add Config
         String[] symbols = new String[]{
-                "vod","fslr","snap","ge","cqqq","bpy","phk","pgp","gld","hyem","oigyx","voo","tur","iipr"
+                "vod","fslr","snap","ge","cqqq","bpy","phk","pty","pgp","gld","hyem","oigyx","voo","tur","iipr","avb","eqr","vti","ilf","wfc","aapl","fb","amzn","m","cmg","eqr","goog","tsla","tmus","dis"
             };
 
-        BollingerBandSetting bollingerSetting = new BollingerBandSetting()
+
+    BollingerBandSetting bollingerSetting = new BollingerBandSetting()
         {
             Period = 40,
             UpperStdDevLimit = 1.5m,
@@ -69,6 +70,14 @@ namespace EgeriaCapital.Manager
 
         public async Task<TradeRecommendationView> GetDefaultDashboard()
         {
+            if (false)
+            {
+                symbols = new String[]{
+                "snap","ge","bpy","phk","pty"
+                };
+            }
+
+
             List<Task<TradeRecommendation>> tasks = new List<Task<TradeRecommendation>>();
 
             foreach (String sym in symbols)
