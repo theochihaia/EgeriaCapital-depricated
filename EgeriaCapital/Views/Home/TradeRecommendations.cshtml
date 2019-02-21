@@ -49,9 +49,6 @@
                 Current Price
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Recommendations.First().SellRatio)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.Recommendations.First().PurchaseRecommendation)
             </th>
             <th>
@@ -61,7 +58,13 @@
                 @Html.DisplayNameFor(model => model.Recommendations.First().PercentReturnPotential)
             </th>
             <th>
-               Date
+                @Html.DisplayNameFor(model => model.Recommendations.First().BuyRatio)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Recommendations.First().SellRatio)
+            </th>
+            <th>
+                Date
             </th>
             <th></th>
         </tr>
@@ -80,9 +83,6 @@
                 $@Html.DisplayFor(modelItem => item.MostRecentTradingSession.Close)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.SellRatio)
-            </td>
-            <td>
                 $@Html.DisplayFor(modelItem => item.PurchaseRecommendation)
             </td>
             <td>
@@ -92,8 +92,14 @@
                 @Html.DisplayFor(modelItem => item.PercentReturnPotential)%
             </td>
             <td>
+                @Html.DisplayFor(modelItem => item.SellRatio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BuyRatio)
+            </td>
+            <td>
                 @item?.MostRecentTradingSession?.DateTime.ToString("MM/dd/yyyy")
-               
+
             </td>
             <!--<td>
         @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |

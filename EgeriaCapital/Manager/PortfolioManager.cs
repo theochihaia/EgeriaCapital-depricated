@@ -28,8 +28,8 @@ namespace EgeriaCapital.Manager
         BollingerBandSetting bollingerSetting = new BollingerBandSetting()
         {
             Period = 20,
-            UpperStdDevLimit = 1.8m,
-            LowerStdDevLimit = 1.8m
+            UpperStdDevLimit = 2.0m,
+            LowerStdDevLimit = 2.0m
         };
 
         public PortfolioManager()
