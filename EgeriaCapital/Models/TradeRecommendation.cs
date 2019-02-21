@@ -9,6 +9,11 @@ namespace EgeriaCapital.Models
 {
     public class TradeRecommendation
     {
+        public TradeRecommendation()
+        {
+
+        }
+
         public string Symbol { get; set; }
 
         [Display(Name = "Buy")]
@@ -16,6 +21,9 @@ namespace EgeriaCapital.Models
 
         [Display(Name = "Sell")]
         public decimal SellRecommendation { get; set; }
+
+        [Display(Name = "Algorithm")]
+        public TradeAlgorithm Algorithm { get; set; }
 
         [Display(Name = "Action")]
         public TradeAction TradeAction

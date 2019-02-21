@@ -15,30 +15,26 @@ namespace EgeriaCapital.Manager
     public class TradeRecommendationManager
     {
 
-        public TradeRecommendationManager()
-        {
+        public TradeRecommendationManager() {}
 
-        }
-
-        // Move percent return to model
         public TradeRecommendation GetTradeRecommendation(String sym, IReadOnlyList<YahooFinanceApi.Candle> candles, BollingerBandSetting setting)
         {
-            var outputBollinger = BollingerBand.GetTradeRecommendation(setting, candles);
+            var outputBollinger = BollingerBand.GetTradeRecommendation(sym, setting, candles);
 
-            /*
+/*
             var linearRegressionOutput = LinearRegression.GetTradeRecommendation(candles, setting.Period);
+
             TradeRecommendation recommendation = new TradeRecommendation()
             {
+                Symbol = sym,
                 MostRecentTradingSession = outputBollinger.MostRecentTradingSession,
                 PurchaseRecommendation = .2m * linearRegressionOutput.PurchaseRecommendation + .8m * outputBollinger.PurchaseRecommendation,
                 SellRecommendation = .2m * linearRegressionOutput.SellRecommendation +  .8m * outputBollinger.SellRecommendation
             }; */
 
-
-            outputBollinger.Symbol = sym;
-
             return outputBollinger;
         }
+
 
     }
 }

@@ -11,8 +11,13 @@ namespace EgeriaCapital.Enums
         [Description("Bollinger Band")]
         BollingerBand,
 
-        [Description("Bollinger Band")]
+        [Description("Linear Regression")]
+        LinearRegression,
+
+        [Description("Williams % R")]
         Williams_R,
+
+        [Description("Stocastic RSI")]
         Stocastic_RSI
     }
 }

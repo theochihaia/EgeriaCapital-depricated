@@ -1,4 +1,5 @@
-﻿using EgeriaCapital.Models;
+﻿using EgeriaCapital.Enums;
+using EgeriaCapital.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,8 +7,10 @@ using System.Threading.Tasks;
 
 namespace EgeriaCapital.Algorithms
 {
-    public class LinearRegression
+    public class LinearRegression : Algorithm
     {
+        private static TradeAlgorithm algorithm = TradeAlgorithm.LinearRegression;
+
         public LinearRegression()
         {
 
@@ -29,6 +32,7 @@ namespace EgeriaCapital.Algorithms
             int preditictionPeriod = period + 5;
             TradeRecommendation recommendation = new TradeRecommendation()
             {
+                Algorithm = algorithm,
                 MostRecentTradingSession = candles.OrderBy(c => c.DateTime).First(),
                 SellRecommendation = (decimal)(outputHigh.Item1 + (outputHigh.Item2 * preditictionPeriod)),
                 PurchaseRecommendation = (decimal)(outputLow.Item1 + (outputLow.Item2 * preditictionPeriod)),
@@ -52,8 +56,6 @@ namespace EgeriaCapital.Algorithms
 
         }
 
-
-
         private static double[] toDoubleArray(List<int> list)
         {
             return list.Select<int, double>(i => i).ToArray();
@@ -62,6 +64,11 @@ namespace EgeriaCapital.Algorithms
         private static double[] toDoubleArray(List<decimal> list)
         {
             return list.Select(item => Convert.ToDouble(item)).ToArray();
+        }
+
+        public override TradeAlgorithm GetTradeAlgorithm()
+        {
+            return algorithm;
         }
 
     }
