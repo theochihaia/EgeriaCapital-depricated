@@ -5,7 +5,7 @@ using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace EgeriaCapital.Common
+namespace EgeriaCapital.Common.Extensions
 {
     public static class EnumExtension
     {

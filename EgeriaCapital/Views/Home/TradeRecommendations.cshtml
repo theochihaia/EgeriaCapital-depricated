@@ -49,7 +49,7 @@
                 Current Price
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Recommendations.First().SellRating)
+                @Html.DisplayNameFor(model => model.Recommendations.First().SellRatio)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Recommendations.First().PurchaseRecommendation)
@@ -80,7 +80,7 @@
                 $@Html.DisplayFor(modelItem => item.MostRecentTradingSession.Close)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.SellRating)
+                @Html.DisplayFor(modelItem => item.SellRatio)
             </td>
             <td>
                 $@Html.DisplayFor(modelItem => item.PurchaseRecommendation)
@@ -92,7 +92,7 @@
                 @Html.DisplayFor(modelItem => item.PercentReturnPotential)%
             </td>
             <td>
-                @item.MostRecentTradingSession.DateTime.ToString("MM/dd/yyyy")
+                @item?.MostRecentTradingSession?.DateTime.ToString("MM/dd/yyyy")
                
             </td>
             <!--<td>

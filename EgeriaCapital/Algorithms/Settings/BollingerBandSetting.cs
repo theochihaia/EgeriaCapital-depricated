@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace EgeriaCapital.Models
+namespace EgeriaCapital.Algorithms.Settings
 {
-    public class BollingerBandSetting
+    public class BollingerBandSetting : Setting
     {
         public int Period { get; set; }
         public decimal UpperStdDevLimit { get; set; }

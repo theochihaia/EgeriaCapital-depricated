@@ -84,6 +84,15 @@
           }
         }
       },
+      "MathNet.Numerics/4.7.0": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/MathNet.Numerics.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/MathNet.Numerics.dll": {}
+        }
+      },
       "Microsoft.ApplicationInsights/2.4.0": {
         "type": "package",
         "dependencies": {
@@ -5129,6 +5138,24 @@
         "runtimes/win-arm/native/libuv.dll",
         "runtimes/win-x64/native/libuv.dll",
         "runtimes/win-x86/native/libuv.dll"
+      ]
+    },
+    "MathNet.Numerics/4.7.0": {
+      "sha512": "xuqSpkRhJeCh0Z6DM5ikKjp+GwMvarmMfejeqfwo1c7flaZlj25OgQTRO1no8Gf0NJRd9qnighupRcl1iUmGfg==",
+      "type": "package",
+      "path": "mathnet.numerics/4.7.0",
+      "files": [
+        ".signature.p7s",
+        "lib/net40/MathNet.Numerics.dll",
+        "lib/net40/MathNet.Numerics.xml",
+        "lib/net461/MathNet.Numerics.dll",
+        "lib/net461/MathNet.Numerics.xml",
+        "lib/netstandard1.3/MathNet.Numerics.dll",
+        "lib/netstandard1.3/MathNet.Numerics.xml",
+        "lib/netstandard2.0/MathNet.Numerics.dll",
+        "lib/netstandard2.0/MathNet.Numerics.xml",
+        "mathnet.numerics.4.7.0.nupkg.sha512",
+        "mathnet.numerics.nuspec"
       ]
     },
     "Microsoft.ApplicationInsights/2.4.0": {
@@ -13243,6 +13270,7 @@
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v2.0": [
+      "MathNet.Numerics >= 4.7.0",
       "Microsoft.AspNet.Mvc.Mvc4Views.CSharp >= 5.1.0",
       "Microsoft.AspNetCore.All >= 2.0.6",
       "Microsoft.NETCore.App >= 2.0.0",
@@ -13295,6 +13323,10 @@
     "frameworks": {
       "netcoreapp2.0": {
         "dependencies": {
+          "MathNet.Numerics": {
+            "target": "Package",
+            "version": "[4.7.0, )"
+          },
           "Microsoft.AspNet.Mvc.Mvc4Views.CSharp": {
             "target": "Package",
             "version": "[5.1.0, )"

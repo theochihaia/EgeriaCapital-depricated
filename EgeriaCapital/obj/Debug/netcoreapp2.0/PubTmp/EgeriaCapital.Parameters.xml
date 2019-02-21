@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <parameters>
   <parameter name="IIS Web Application Name" description="" value="EgeriaCapital" tags="IisApp">
-    <parameterEntry kind="ProviderPath" scope="IisApp" match="^\\\\mac\\home\\Documents\\Visual\ Studio\ 2017\\Projects\\EgeriaCapital\\EgeriaCapital\\obj\\Debug\\netcoreapp2\.0\\PubTmp\\Out\\$" />
+    <parameterEntry kind="ProviderPath" scope="IisApp" match="^C:\\Users\\theo\\Source\\Repos\\EgeriaCapital\\EgeriaCapital\\obj\\Debug\\netcoreapp2\.0\\PubTmp\\Out\\$" />
   </parameter>
 </parameters>

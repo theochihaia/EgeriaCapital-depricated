@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using EgeriaCapital.Algorithms.Settings;
 using EgeriaCapital.Database.DataAccess;
 using EgeriaCapital.Enums;
 using EgeriaCapital.Models;
@@ -20,15 +21,15 @@ namespace EgeriaCapital.Manager
 
         // TODO: Add Config
         String[] symbols = new String[]{
-                "vod","fslr","snap","ge","cqqq","bpy","phk","pty","pgp","gld","hyem","oigyx","voo","tur","iipr","avb","eqr","vti","ilf","wfc","aapl","fb","amzn","m","cmg","eqr","goog","tsla","tmus","dis"
+                "vod","fslr","snap","ge","cqqq","bpy","phk","pty","pgp","gld","hyem","oigyx","voo","tur","iipr","avb","eqr","vti","ilf","wfc","aapl","fb","amzn","m","cmg","goog","tsla","tmus","dis","f","chk"
             };
 
 
-    BollingerBandSetting bollingerSetting = new BollingerBandSetting()
+        BollingerBandSetting bollingerSetting = new BollingerBandSetting()
         {
-            Period = 40,
-            UpperStdDevLimit = 1.5m,
-            LowerStdDevLimit = 1.5m
+            Period = 20,
+            UpperStdDevLimit = 1.8m,
+            LowerStdDevLimit = 1.8m
         };
 
         public PortfolioManager()
@@ -83,7 +84,8 @@ namespace EgeriaCapital.Manager
             foreach (String sym in symbols)
             {
                 // Get stock data
-                tasks.Add(ProcessTradeRecommendation(sym, bollingerSetting));
+                var output = ProcessTradeRecommendation(sym, bollingerSetting);
+                tasks.Add(output);
             }
 
             var results = await Task.WhenAll(tasks);
@@ -96,31 +98,32 @@ namespace EgeriaCapital.Manager
                 BollingerBandSetting = bollingerSetting
             };
 
-            tradeRecommendation.Recommendations = tradeRecommendation.Recommendations.OrderByDescending(o => o?.SellRating).ToList();
+            tradeRecommendation.Recommendations = tradeRecommendation.Recommendations
+                .Where(r => r != null)
+                .OrderByDescending(r => r?.SellRatio)
+                .ToList();
 
             return tradeRecommendation;
         }
 
         private Task<TradeRecommendation> ProcessTradeRecommendation(String sym, BollingerBandSetting setting)
         {
-            try
+            return Task.Run(() =>
             {
-                return Task.Run(() =>
+                var candles = _stockManager.GetStockDetails(sym);
+                try
                 {
-                    var candles = _stockManager.GetStockDetails(sym);
-
                     return _tradeRecommendationManager.GetTradeRecommendation(sym, candles.Result, setting);
-                });
-
-            }
-            catch(Exception e)
-            {
-                // TODO: Implement Logger
-                Console.WriteLine($@"Exception Getting trade recommendation for: {sym}
+                }
+                catch (Exception e)
+                {
+                    // TODO: Implement Logger
+                    Console.WriteLine($@"Exception Getting trade recommendation for: {sym}
                     Exception Message: {e.Message}");
-            }
+                    return null;
+                }
 
-            return null;
+            });
         }
     }
 }
