@@ -100,7 +100,7 @@ namespace EgeriaCapital.Manager
 
             tradeRecommendation.Recommendations = tradeRecommendation.Recommendations
                 .Where(r => r != null)
-                .OrderByDescending(r => r?.SellRatio)
+                .OrderByDescending(r => r?.BuyRatio)
                 .ToList();
 
             return tradeRecommendation;

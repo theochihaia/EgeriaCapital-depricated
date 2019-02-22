@@ -63,7 +63,7 @@ namespace EgeriaCapital.Models
             get
             {
                 decimal closePrice = this.MostRecentTradingSession.Close;
-                decimal score = (this.MostRecentTradingSession.Close - this.SellRecommendation)/ this.MostRecentTradingSession.Close;
+                decimal score = (this.SellRecommendation - this.MostRecentTradingSession.Close) / this.SellRecommendation;
                 return score;
             }
         }
@@ -74,7 +74,7 @@ namespace EgeriaCapital.Models
             get
             {
                 decimal closePrice = this.MostRecentTradingSession.Close;
-                decimal score = (this.MostRecentTradingSession.Close - this.PurchaseRecommendation) / this.MostRecentTradingSession.Close;
+                decimal score = (this.PurchaseRecommendation - this.MostRecentTradingSession.Close) / this.PurchaseRecommendation;
                 return score;
             }
         }
