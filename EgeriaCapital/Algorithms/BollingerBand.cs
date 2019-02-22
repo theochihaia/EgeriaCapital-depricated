@@ -26,9 +26,9 @@ namespace EgeriaCapital.Algorithms
             var list = candles.OrderByDescending(c => c.DateTime).Take(setting.Period);
 
             // determine bands
-            decimal stdDevHigh = (decimal)MathUtil.CalculateStandardDeviation(list.Select(c => c.High));
+            decimal stdDevHigh = (decimal) MathUtil.CalculateStandardDeviation(list.Select(c => c.High));
             decimal avgHigh = MathUtil.CalculateAverage(list.Select(c => c.High));
-            decimal stdDevLow = (decimal)MathUtil.CalculateStandardDeviation(list.Select(c => c.Low));
+            decimal stdDevLow = (decimal) MathUtil.CalculateStandardDeviation(list.Select(c => c.Low));
             decimal avgLow = MathUtil.CalculateAverage(list.Select(c => c.Low));
 
             // Populate Output

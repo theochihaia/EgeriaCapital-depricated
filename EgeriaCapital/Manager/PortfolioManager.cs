@@ -71,14 +71,6 @@ namespace EgeriaCapital.Manager
 
         public async Task<TradeRecommendationView> GetDefaultDashboard()
         {
-            if (false)
-            {
-                symbols = new String[]{
-                "snap","ge","bpy","phk","pty"
-                };
-            }
-
-
             List<Task<TradeRecommendation>> tasks = new List<Task<TradeRecommendation>>();
 
             foreach (String sym in symbols)
@@ -88,7 +80,7 @@ namespace EgeriaCapital.Manager
                 tasks.Add(output);
             }
 
-            var results = await Task.WhenAll(tasks);
+            TradeRecommendation[] results = await Task.WhenAll(tasks);
 
             // TODO: Handle null Trade Recommendations
 
@@ -98,9 +90,12 @@ namespace EgeriaCapital.Manager
                 BollingerBandSetting = bollingerSetting
             };
 
+            // TODO: Move out to UI
             tradeRecommendation.Recommendations = tradeRecommendation.Recommendations
                 .Where(r => r != null)
                 .OrderByDescending(r => r?.BuyRatio)
+                .OrderByDescending(r => r.TradeAction)
+                
                 .ToList();
 
             return tradeRecommendation;
@@ -110,7 +105,7 @@ namespace EgeriaCapital.Manager
         {
             return Task.Run(() =>
             {
-                var candles = _stockManager.GetStockDetails(sym);
+                var candles = _stockManager.GetStockDetails(sym, setting.Period);
                 try
                 {
                     return _tradeRecommendationManager.GetTradeRecommendation(sym, candles.Result, setting);

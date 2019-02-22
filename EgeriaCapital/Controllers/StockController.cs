@@ -16,7 +16,7 @@ namespace EgeriaCapital.Controllers
         public Task<IReadOnlyList<YahooFinanceApi.Candle>> GetStockDetails(string symbol)
         {
             StockManger portfolioManager = new StockManger();
-            var candleList = portfolioManager.GetStockDetails(symbol);
+            var candleList = portfolioManager.GetStockDetails(symbol, -100);
 
             return candleList;
         }

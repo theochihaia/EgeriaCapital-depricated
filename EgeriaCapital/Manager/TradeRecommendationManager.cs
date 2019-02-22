@@ -9,30 +9,54 @@ using EgeriaCapital.Common.Extensions;
 using EgeriaCapital.Common.Utils;
 using EgeriaCapital.Algorithms.Settings;
 using EgeriaCapital.Algorithms;
+using EgeriaCapital.Enums;
 
 namespace EgeriaCapital.Manager
 {
     public class TradeRecommendationManager
     {
+        // WARNING: Make sure weights add up to 1
+        private Dictionary<TradeAlgorithm, decimal> algorithmWeights = new Dictionary<TradeAlgorithm, decimal>()
+        {
+            { TradeAlgorithm.BollingerBand, .9m },
+            { TradeAlgorithm.LinearRegression, .1m },
+        };
 
         public TradeRecommendationManager() {}
 
         public TradeRecommendation GetTradeRecommendation(String sym, IReadOnlyList<YahooFinanceApi.Candle> candles, BollingerBandSetting setting)
         {
-            var outputBollinger = BollingerBand.GetTradeRecommendation(sym, setting, candles);
+            List<TradeRecommendation> recommendations = new List<TradeRecommendation>();
+            
+            // Execute Algorithms
+            foreach(TradeAlgorithm alg in algorithmWeights.Keys.ToList())
+            {
+                switch(alg)
+                {
+                    case TradeAlgorithm.BollingerBand:
+                        recommendations.Add(BollingerBand.GetTradeRecommendation(sym, setting, candles));
+                        break;
+                    case TradeAlgorithm.LinearRegression:
+                        recommendations.Add(LinearRegression.GetTradeRecommendation(candles, setting.Period));
+                        break;
+                }
+            }
 
-/*
-            var linearRegressionOutput = LinearRegression.GetTradeRecommendation(candles, setting.Period);
+            // Calculate Purchase and Sell
+            decimal purchasePrice= recommendations.Sum(r => r.PurchaseRecommendation * algorithmWeights.GetValueOrDefault(r.Algorithm));
+            decimal sellPrice = recommendations.Sum(r => r.SellRecommendation * algorithmWeights.GetValueOrDefault(r.Algorithm));
 
-            TradeRecommendation recommendation = new TradeRecommendation()
+            // TODO: Make new object ot replace candles from yahoo finance
+                //require proper decimal formatting and sorting
+            TradeRecommendation outputRecommendation = new TradeRecommendation()
             {
                 Symbol = sym,
-                MostRecentTradingSession = outputBollinger.MostRecentTradingSession,
-                PurchaseRecommendation = .2m * linearRegressionOutput.PurchaseRecommendation + .8m * outputBollinger.PurchaseRecommendation,
-                SellRecommendation = .2m * linearRegressionOutput.SellRecommendation +  .8m * outputBollinger.SellRecommendation
-            }; */
+                MostRecentTradingSession = candles.OrderByDescending(c => c.DateTime).FirstOrDefault(),
+                PurchaseRecommendation = purchasePrice,
+                SellRecommendation = sellPrice
+            };
 
-            return outputBollinger;
+            return outputRecommendation;
         }
 
 
